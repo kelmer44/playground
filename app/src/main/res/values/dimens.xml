@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="match_constraints">0dp</dimen>
+    <dimen name="write_up_start_end_margin">14dp</dimen>
+    <dimen name="leave_text_padding_top">20dp</dimen>
+    <dimen name="leave_text_padding_bottom">20dp</dimen>
+</resources>
