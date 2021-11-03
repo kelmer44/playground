@@ -2,11 +2,14 @@ package com.example.injectiontest;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.app_annotations.FragmentArgument;
 import com.example.injectiontest.injectedobjects.ContentTypeRouter;
 import com.example.injectiontest.injectedobjects.LobbyLeaveHelper;
 import com.example.injectiontest.injectedobjects.LobbyViewModel;
 import com.example.injectiontest.util.ViewModelUtils;
 
+
+import javax.inject.Named;
 
 import dagger.Lazy;
 import dagger.Module;
@@ -21,13 +24,15 @@ abstract class Lobby_FragmentModule {
     @Provides
     static LobbyViewModel provideLobbyViewModel(
             Fragment fragment,
-//            LobbyLeaveHelper lobbyLeaveHelper
-            Lazy<LobbyLeaveHelper> lobbyLeaveHelperProvider
+            Lazy<LobbyLeaveHelper> lobbyLeaveHelperProvider,
+            @Named("injection_param")
+            @FragmentArgument
+            String injectedParam
+
     ) {
         return ViewModelUtils.getViewModel(fragment,
                 LobbyViewModel.class,
-                () -> new LobbyViewModel(lobbyLeaveHelperProvider)
-//                () -> new LobbyViewModel(lobbyLeaveHelper)
+                () -> new LobbyViewModel(lobbyLeaveHelperProvider, injectedParam)
         );
     }
 

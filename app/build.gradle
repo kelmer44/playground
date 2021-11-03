@@ -53,8 +53,10 @@ dependencies {
     implementation 'com.google.dagger:hilt-android:2.39.1'
     kapt 'com.google.dagger:hilt-compiler:2.39.1'
 
+    implementation project(":app-annotations")
+    kapt project(":app-processor")
 
-    testImplementation 'junit:junit:'
+
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }

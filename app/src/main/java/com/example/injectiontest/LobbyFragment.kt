@@ -22,9 +22,6 @@ class LobbyFragment : Fragment() {
     lateinit var viewModel: LobbyViewModel
 
     @Inject
-    lateinit var lobbyPresenter: LobbyPresenter
-
-    @Inject
     lateinit var sheetPresenter: LobbySheetPresenter
 
 
@@ -38,9 +35,10 @@ class LobbyFragment : Fragment() {
     }
 
     companion object {
+        const val PARAM_KEY = "injection_param"
         fun newInstance(chorradaId: String) = LobbyFragment().apply {
             this.arguments = Bundle().apply {
-                this.putString("chorradaId", chorradaId)
+                this.putString(PARAM_KEY, chorradaId)
             }
         }
     }

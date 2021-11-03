@@ -10,7 +10,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         supportFragmentManager.beginTransaction()
-            .add(R.id.content_fragment, LobbyFragment.newInstance("POLLAS"))
+            .add(R.id.content_fragment, LobbyFragment.newInstance("This is my passed Argument"))
             .commit()
     }
 }

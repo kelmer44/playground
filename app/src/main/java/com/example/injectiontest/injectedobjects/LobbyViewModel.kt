@@ -9,15 +9,15 @@ import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 
 class LobbyViewModel(
-    private val leaveHelperProvider: Lazy<LobbyLeaveHelper>
-//    private val leaveHelper: LobbyLeaveHelper
+    private val leaveHelperProvider: Lazy<LobbyLeaveHelper>,
+    private val injectedParam: String
 ) : ViewModel() {
 
     private val leaveHelper
         get() = leaveHelperProvider.get()
 
     init {
-
+        Timber.w("Injected param from ViewModel is $injectedParam")
     }
 
     fun useHelper() {
