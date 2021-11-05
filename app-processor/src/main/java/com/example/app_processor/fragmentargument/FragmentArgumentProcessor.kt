@@ -21,7 +21,7 @@ import javax.tools.Diagnostic
 class FragmentArgumentProcessor : AbstractProcessor() {
 
     override fun getSupportedAnnotationTypes(): MutableSet<String> =
-        mutableSetOf(FragmentArgument::class.java.canonicalName, Named::class.java.canonicalName)
+        mutableSetOf(FragmentArgument::class.java.canonicalName)
 
     lateinit var filer: Filer
     override fun init(processingEnv: ProcessingEnvironment) {
@@ -41,6 +41,8 @@ class FragmentArgumentProcessor : AbstractProcessor() {
         val components: List<ComponentData> = roundEnv.getElementsAnnotatedWith(FragmentArgument::class.java)
             .map {
                 val componentData = getComponentData(it) ?: return false
+
+                processingEnv.messager.printMessage(Diagnostic.Kind.WARNING, "Got componentData! $componentData")
                 componentData
             }
 
@@ -50,9 +52,10 @@ class FragmentArgumentProcessor : AbstractProcessor() {
         groupBy.entries.forEach { pair ->
             val theseComponents = pair.value.distinctBy { it.argumentType }
             if(theseComponents.size != 1) throw IllegalStateException("Multiple types bound to item ${pair.key}!")
-            val component = components.first()
+            val component = theseComponents.first()
             val moduleName =
-                component.fieldName.replaceFirstChar { it.uppercaseChar() } + "_" + "FragmentArgumentsModule"
+                component.argumentName.toCamelCase().replaceFirstChar { it.uppercaseChar() } + "_" + "FragmentArgumentsModule"
+            processingEnv.messager.printMessage(Diagnostic.Kind.WARNING, "Building file $moduleName")
             val build: JavaFile = JavaFile
                 .builder(
                     component.packageName,
@@ -68,6 +71,16 @@ class FragmentArgumentProcessor : AbstractProcessor() {
         return true
     }
 
+    private fun String.toCamelCase() : String {
+        val parts = this.split("_").toMutableList()
+        for (i in parts.indices) {
+            if (i > 0) {
+                parts[i] = parts[i].replaceFirstChar { it.uppercaseChar() }
+            }
+        }
+        return parts.joinToString("")
+    }
+
     private fun getComponentData(element: Element): ComponentData? {
         val packageName = processingEnv.elementUtils.getPackageOf(element).toString()
 
@@ -77,6 +90,8 @@ class FragmentArgumentProcessor : AbstractProcessor() {
             ?: throw IllegalStateException("No @Named annotation found for $fieldName in $enclosingElement")
         val argumentName = namedAnnotation.value
         val type = element.asType()
+
+
         return ComponentData(
             packageName,
             fieldName,

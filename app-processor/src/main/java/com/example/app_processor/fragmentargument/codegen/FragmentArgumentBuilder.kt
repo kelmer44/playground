@@ -8,6 +8,7 @@ import com.squareup.javapoet.MethodSpec
 import com.squareup.javapoet.ParameterSpec
 import com.squareup.javapoet.TypeName
 import com.squareup.javapoet.TypeSpec
+import com.squareup.kotlinpoet.asTypeName
 import java.lang.IllegalStateException
 import javax.annotation.processing.ProcessingEnvironment
 import javax.inject.Named
@@ -30,9 +31,6 @@ class FragmentArgumentBuilder(
 
     private fun determineType(component: ComponentData): ArgumentTypes {
         val argumentType = component.argumentType
-        val stringType = processingEnv.elementUtils.getTypeElement("java.lang.String").asType()
-        val integerType = processingEnv.elementUtils.getTypeElement("java.lang.Integer").asType()
-        val parcelableType = processingEnv.elementUtils.getTypeElement("android.os.Parcelable").asType()
 
         return when {
             processingEnv.typeUtils.isAssignable(argumentType, getBasicType("java.lang.String")) -> ArgumentTypes.STRING
@@ -46,7 +44,7 @@ class FragmentArgumentBuilder(
         }
     }
 
-    fun getBasicType(type: String) = processingEnv.elementUtils.getTypeElement(type).asType()
+    private fun getBasicType(type: String): TypeMirror = processingEnv.elementUtils.getTypeElement(type).asType()
 
     fun build(): TypeSpec = TypeSpec.classBuilder(moduleName)
         .addModifiers(Modifier.ABSTRACT)
@@ -79,40 +77,25 @@ class FragmentArgumentBuilder(
         .build()
 
     private fun buildReturnStatement(component: ComponentData): String {
-        val baseString = "return fragment.getArguments().%s"
-
-        component.argumentType
-        val value = when (type) {
-            ArgumentTypes.STRING -> "getString(\"${component.argumentName}\")"
-            ArgumentTypes.INTEGER -> "getInt(\"${component.argumentName}\")"
-            ArgumentTypes.DOUBLE -> "getDouble(\"${component.argumentName}\")"
-            ArgumentTypes.BOOLEAN -> "getBoolean(\"${component.argumentName}\")"
-            ArgumentTypes.FLOAT -> "getFloat(\"${component.argumentName}\")"
-            ArgumentTypes.CHAR -> "getChar(\"${component.argumentName}\")"
-            ArgumentTypes.BYTE -> "getByte(\"${component.argumentName}\")"
-            else -> throw IllegalStateException("Incompatible type; cant extract type ${component.argumentType} from Fragment Arguments.")
-        };
-
-        return baseString.format(value)
+        if(type==ArgumentTypes.UNKNOWN) throw IllegalStateException("Incompatible type; cant extract type ${component.argumentType} from Fragment Arguments.")
+        return returnSentence(type.functionCall, component)
     }
 
-    enum class ArgumentTypes {
-        STRING,
-        STRINGARRAY,
-        INTEGER,
-        INTEGERARRAY,
-        BYTE,
-        BYTEARRAY,
-        CHAR,
-        CHARARRAY,
-        FLOAT,
-        FLOATARRAY,
-        BOOLEAN,
-        BOOLEANARRAY,
-        DOUBLE,
-        DOUBLEARRAY,
-        PARCELABLE,
-        PARCELABLEARRAY,
-        UNKNOWN
+    private fun returnSentence(functionCall: String, component: ComponentData): String {
+        return "return (${
+            component.argumentType.asTypeName().toString()
+        }) fragment.getArguments().$functionCall(\"${component.argumentName}\")"
+    }
+
+    enum class ArgumentTypes(val functionCall: String) {
+        STRING("getString"),
+        INTEGER("getInteger"),
+        BYTE("getByte"),
+        CHAR("getChar"),
+        FLOAT("getFloat"),
+        BOOLEAN("getBoolean"),
+        DOUBLE("getDouble"),
+        PARCELABLE("getParcelable"),
+        UNKNOWN("none")
     }
 }

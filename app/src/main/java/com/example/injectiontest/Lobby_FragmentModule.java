@@ -1,5 +1,7 @@
 package com.example.injectiontest;
 
+import static com.example.injectiontest.LobbyFragment.STRING_PARAM_KEY;
+
 import androidx.fragment.app.Fragment;
 
 import com.example.app_annotations.FragmentArgument;
@@ -25,7 +27,7 @@ abstract class Lobby_FragmentModule {
     static LobbyViewModel provideLobbyViewModel(
             Fragment fragment,
             Lazy<LobbyLeaveHelper> lobbyLeaveHelperProvider,
-            @Named("injection_param")
+            @Named(STRING_PARAM_KEY)
             @FragmentArgument
             String injectedParam
 

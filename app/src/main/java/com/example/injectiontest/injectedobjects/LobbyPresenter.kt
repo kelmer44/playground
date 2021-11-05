@@ -6,27 +6,28 @@ import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import com.example.app_annotations.FragmentArgument
-import com.example.injectiontest.LobbyFragment.Companion.PARAM_KEY
+import com.example.injectiontest.LobbyFragment.Companion.PARCELABLE_PARAM_KEY
+import com.example.injectiontest.LobbyFragment.Companion.STRING_PARAM_KEY
 import com.example.injectiontest.R
+import com.example.injectiontest.model.ParamHolder
 import timber.log.Timber
 import javax.inject.Named
 
 class LobbyPresenter @Inject constructor(
     private val fragment: Fragment,
     private val viewModel: LobbyViewModel,
-    @Named("injection_param")
+    @Named(STRING_PARAM_KEY)
     @FragmentArgument
-    private val injectedParam: String
+    private val injectedParam: String,
+    @Named(PARCELABLE_PARAM_KEY)
+    @FragmentArgument
+    private val injectedParamHolder: ParamHolder
 ) {
 
     private val containerView: View? get() = fragment.view
 
-//    @FragmentArgument
-//    @Named("injection_param")
-    val injectedField: String = fragment.arguments?.getString(PARAM_KEY) ?: ""
-
     init {
-        Timber.i("InjectedField=$injectedField, InjectedParam=$injectedParam (from $this)")
+        Timber.i("InjectedStringParam=$injectedParam, InjectedParcelable=$injectedParamHolder (from $this)")
     }
 
     fun doSomething() {

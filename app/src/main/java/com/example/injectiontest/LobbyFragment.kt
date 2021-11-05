@@ -5,9 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.injectiontest.injectedobjects.LobbyPresenter
 import com.example.injectiontest.injectedobjects.LobbySheetPresenter
 import com.example.injectiontest.injectedobjects.LobbyViewModel
+import com.example.injectiontest.model.ParamHolder
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 import javax.inject.Provider
@@ -35,10 +35,12 @@ class LobbyFragment : Fragment() {
     }
 
     companion object {
-        const val PARAM_KEY = "injection_param"
-        fun newInstance(chorradaId: String) = LobbyFragment().apply {
+        const val STRING_PARAM_KEY = "string_injection_param"
+        const val PARCELABLE_PARAM_KEY = "parcelable_injection_param"
+        fun newInstance(chorradaId: String, param: ParamHolder) = LobbyFragment().apply {
             this.arguments = Bundle().apply {
-                this.putString(PARAM_KEY, chorradaId)
+                this.putString(STRING_PARAM_KEY, chorradaId)
+                this.putParcelable(PARCELABLE_PARAM_KEY, param)
             }
         }
     }
