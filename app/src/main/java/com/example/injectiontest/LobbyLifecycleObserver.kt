@@ -15,8 +15,8 @@ class LobbyLifecycleObserver @Inject constructor(
 
     override fun onCreate(owner: LifecycleOwner) {
         super.onCreate(owner)
-        lobbyPresenter.doSomething()
         lobbySheetPresenter.init()
+        lobbyPresenter.doSomething()
     }
 
     override fun onStart(owner: LifecycleOwner) {

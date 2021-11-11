@@ -32,16 +32,12 @@ class FragmentArgumentBuilder(
     private fun determineType(component: ComponentData): ArgumentTypes {
         val argumentType = component.argumentType
 
-        return when {
-            processingEnv.typeUtils.isAssignable(argumentType, getBasicType("java.lang.String")) -> ArgumentTypes.STRING
-            processingEnv.typeUtils.isAssignable(argumentType, getBasicType("java.lang.Byte")) -> ArgumentTypes.BYTE
-            processingEnv.typeUtils.isAssignable(argumentType, getBasicType("java.lang.Boolean")) -> ArgumentTypes.BOOLEAN
-            processingEnv.typeUtils.isAssignable(argumentType, getBasicType("java.lang.Integer")) -> ArgumentTypes.INTEGER
-            processingEnv.typeUtils.isAssignable(argumentType, getBasicType("java.lang.Float")) -> ArgumentTypes.FLOAT
-            processingEnv.typeUtils.isAssignable(argumentType, getBasicType("java.lang.Double")) -> ArgumentTypes.DOUBLE
-            processingEnv.typeUtils.isAssignable(argumentType, getBasicType("android.os.Parcelable")) -> ArgumentTypes.PARCELABLE
-            else -> ArgumentTypes.UNKNOWN
-        }
+        return ArgumentTypes.values().firstOrNull {
+            it != ArgumentTypes.UNKNOWN && processingEnv.typeUtils.isAssignable(
+                argumentType,
+                getBasicType(it.typeName)
+            )
+        } ?: ArgumentTypes.UNKNOWN
     }
 
     private fun getBasicType(type: String): TypeMirror = processingEnv.elementUtils.getTypeElement(type).asType()
@@ -77,25 +73,27 @@ class FragmentArgumentBuilder(
         .build()
 
     private fun buildReturnStatement(component: ComponentData): String {
-        if(type==ArgumentTypes.UNKNOWN) throw IllegalStateException("Incompatible type; cant extract type ${component.argumentType} from Fragment Arguments.")
+        if (type == ArgumentTypes.UNKNOWN) throw IllegalStateException("Incompatible type; cant extract type ${component.argumentType} from Fragment Arguments.")
         return returnSentence(type.functionCall, component)
     }
 
     private fun returnSentence(functionCall: String, component: ComponentData): String {
-        return "return (${
-            component.argumentType.asTypeName().toString()
-        }) fragment.getArguments().$functionCall(\"${component.argumentName}\")"
+        val castAppend = if (type == ArgumentTypes.PARCELABLE) "(${
+            component.argumentType.asTypeName()
+        })" else ""
+        return "return $castAppend fragment.getArguments().$functionCall(\"${component.argumentName}\")"
     }
 
-    enum class ArgumentTypes(val functionCall: String) {
-        STRING("getString"),
-        INTEGER("getInteger"),
-        BYTE("getByte"),
-        CHAR("getChar"),
-        FLOAT("getFloat"),
-        BOOLEAN("getBoolean"),
-        DOUBLE("getDouble"),
-        PARCELABLE("getParcelable"),
-        UNKNOWN("none")
+    enum class ArgumentTypes(val functionCall: String, val typeName: String) {
+        BYTE("getByte", "java.lang.Byte"),
+        BOOLEAN("getBoolean", "java.lang.Boolean"),
+        CHAR("getChar", "java.lang.Character"),
+        INTEGER("getInt", "java.lang.Integer"),
+        FLOAT("getFloat", "java.lang.Float"),
+        DOUBLE("getDouble", "java.lang.Double"),
+        STRING("getString", "java.lang.String"),
+        PARCELABLE("getParcelable", "android.os.Parcelable"),
+        UNKNOWN("none", "none");
+
     }
 }

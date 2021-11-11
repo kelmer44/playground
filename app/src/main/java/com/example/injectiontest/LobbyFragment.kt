@@ -37,10 +37,12 @@ class LobbyFragment : Fragment() {
     companion object {
         const val STRING_PARAM_KEY = "string_injection_param"
         const val PARCELABLE_PARAM_KEY = "parcelable_injection_param"
+        const val INTEGER_PARAM_KEY = "integer_injection_param"
         fun newInstance(chorradaId: String, param: ParamHolder) = LobbyFragment().apply {
             this.arguments = Bundle().apply {
                 this.putString(STRING_PARAM_KEY, chorradaId)
                 this.putParcelable(PARCELABLE_PARAM_KEY, param)
+                this.putInt(INTEGER_PARAM_KEY, 256)
             }
         }
     }

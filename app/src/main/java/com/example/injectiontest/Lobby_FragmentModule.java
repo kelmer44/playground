@@ -23,6 +23,8 @@ import dagger.hilt.android.components.FragmentComponent;
 @InstallIn(FragmentComponent.class)
 abstract class Lobby_FragmentModule {
 
+
+
     @Provides
     static LobbyViewModel provideLobbyViewModel(
             Fragment fragment,
