@@ -38,7 +38,4 @@ class ColorBox @JvmOverloads constructor(
     fun setText(text: String){
         inflate.textView.text = text
     }
-//    fun setBgColor(@ColorRes color: Int){
-//        this@ColorBox.setBackgroundColor(color)
-//    }
 }

@@ -2,10 +2,12 @@ package com.example.injectiontest.flow
 
 import android.graphics.Color
 import android.view.View
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.injectiontest.R
 import com.example.injectiontest.databinding.FragmentFlowBinding
 import com.example.injectiontest.view.ColorBox
+import timber.log.Timber
 import javax.inject.Inject
 
 class FlowPresenter @Inject constructor(
@@ -14,6 +16,19 @@ class FlowPresenter @Inject constructor(
     private val binding = FragmentFlowBinding.bind(fragment.requireView())
 
     fun doSomething() {
+
+        setListeners(
+            listOf(
+                binding.blue,
+                binding.green,
+                binding.red,
+                binding.orange,
+                binding.purple,
+                binding.teal,
+                binding.yellow
+            )
+        )
+
 
         val lastElement = ColorBox(context = fragment.requireContext()).also {
             it.setBgColor(Color.DKGRAY)
@@ -70,5 +85,15 @@ class FlowPresenter @Inject constructor(
 //            )
 ////            flow.updateViews(views, emptyList())
 //        }
+    }
+
+    private fun setListeners(elements: List<View>) {
+
+        elements.forEach {
+            it.setOnClickListener {
+                val text = it.findViewById<TextView>(R.id.textView)
+                Timber.w("Clicked ${text?.text ?: "NONE"}")
+            }
+        }
     }
 }
