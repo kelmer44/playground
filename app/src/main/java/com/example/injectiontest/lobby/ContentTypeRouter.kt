@@ -1,4 +1,4 @@
-package com.example.injectiontest.injectedobjects
+package com.example.injectiontest.lobby
 
 import androidx.fragment.app.Fragment
 import com.example.injectiontest.hexCode

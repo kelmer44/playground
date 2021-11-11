@@ -1,8 +1,6 @@
-package com.example.injectiontest.injectedobjects
+package com.example.injectiontest.lobby
 
-import android.util.Log
 import com.example.injectiontest.hexCode
-import dagger.Lazy
 import timber.log.Timber
 import javax.inject.Inject
 

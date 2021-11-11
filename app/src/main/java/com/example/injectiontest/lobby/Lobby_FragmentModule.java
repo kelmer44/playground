@@ -1,13 +1,10 @@
-package com.example.injectiontest;
+package com.example.injectiontest.lobby;
 
-import static com.example.injectiontest.LobbyFragment.STRING_PARAM_KEY;
+import static com.example.injectiontest.lobby.LobbyFragment.STRING_PARAM_KEY;
 
 import androidx.fragment.app.Fragment;
 
 import com.example.app_annotations.FragmentArgument;
-import com.example.injectiontest.injectedobjects.ContentTypeRouter;
-import com.example.injectiontest.injectedobjects.LobbyLeaveHelper;
-import com.example.injectiontest.injectedobjects.LobbyViewModel;
 import com.example.injectiontest.util.ViewModelUtils;
 
 
@@ -22,8 +19,6 @@ import dagger.hilt.android.components.FragmentComponent;
 @Module
 @InstallIn(FragmentComponent.class)
 abstract class Lobby_FragmentModule {
-
-
 
     @Provides
     static LobbyViewModel provideLobbyViewModel(

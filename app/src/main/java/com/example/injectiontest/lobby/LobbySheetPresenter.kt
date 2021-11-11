@@ -1,7 +1,6 @@
-package com.example.injectiontest.injectedobjects
+package com.example.injectiontest.lobby
 
 import android.view.View
-import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.injectiontest.R

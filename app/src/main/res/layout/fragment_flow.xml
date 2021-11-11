@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rootLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/flow_root"
+            android:layout_width="@dimen/match_constraints"
+            android:layout_height="match_parent"
+            android:background="@android:color/holo_blue_dark"
+            android:nestedScrollingEnabled="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.helper.widget.Flow
+                android:id="@+id/profilesFlowHelper"
+                android:layout_width="@dimen/match_constraints"
+                android:layout_height="0dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="32dp"
+                app:constraint_referenced_ids="green,red,blue,orange,purple,teal,yellow"
+                app:flow_horizontalGap="@dimen/flow_horizontal_gap"
+                app:flow_horizontalStyle="packed"
+                app:flow_lastVerticalBias="0.2"
+                app:flow_lastVerticalStyle="packed"
+                app:flow_maxElementsWrap="3"
+                app:flow_verticalAlign="top"
+                app:flow_verticalGap="24dp"
+                app:flow_verticalStyle="packed"
+                app:flow_wrapMode="chain"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.example.injectiontest.view.ColorBox
+                android:id="@+id/green"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:bgColor="@android:color/holo_green_light"
+                app:text="This is my green color, with a long text" />
+
+            <com.example.injectiontest.view.ColorBox
+                android:id="@+id/red"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:bgColor="@android:color/holo_red_light"
+                app:text="This is my red color, with a long text" />
+
+            <com.example.injectiontest.view.ColorBox
+                android:id="@+id/blue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:bgColor="@android:color/holo_blue_light"
+                app:text="This is my blue color, with a long text" />
+
+            <com.example.injectiontest.view.ColorBox
+                android:id="@+id/orange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:bgColor="@android:color/holo_orange_dark"
+                app:text="This is my orange color, with a long text" />
+
+            <com.example.injectiontest.view.ColorBox
+                android:id="@+id/purple"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:bgColor="@android:color/holo_purple"
+                app:text="This is my purple color, with a long text" />
+
+            <com.example.injectiontest.view.ColorBox
+                android:id="@+id/teal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:bgColor="@color/teal_200"
+                app:text="This is my teal color, with a long text" />
+
+            <com.example.injectiontest.view.ColorBox
+                android:id="@+id/yellow"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:bgColor="#ffff00"
+                app:text="This is my yellow color, with a long text and what if I make it longer" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
+

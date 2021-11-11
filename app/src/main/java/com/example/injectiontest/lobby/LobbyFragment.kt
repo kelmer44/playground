@@ -1,12 +1,11 @@
-package com.example.injectiontest
+package com.example.injectiontest.lobby
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.injectiontest.injectedobjects.LobbySheetPresenter
-import com.example.injectiontest.injectedobjects.LobbyViewModel
+import com.example.injectiontest.R
 import com.example.injectiontest.model.ParamHolder
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -26,7 +25,7 @@ class LobbyFragment : Fragment() {
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
-        inflater.inflate(R.layout.fragment_main, container, false)
+        inflater.inflate(R.layout.fragment_lobby, container, false)
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

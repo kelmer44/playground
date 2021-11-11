@@ -1,11 +1,8 @@
-package com.example.injectiontest.injectedobjects
+package com.example.injectiontest.lobby
 
 import androidx.lifecycle.ViewModel
 import com.example.injectiontest.hexCode
 import dagger.Lazy
-import io.reactivex.Completable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 
 class LobbyViewModel(

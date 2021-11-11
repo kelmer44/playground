@@ -1,10 +1,7 @@
-package com.example.injectiontest
+package com.example.injectiontest.lobby
 
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
-import com.example.injectiontest.injectedobjects.LobbyPresenter
-import com.example.injectiontest.injectedobjects.LobbySheetPresenter
-import com.example.injectiontest.injectedobjects.LobbyViewModel
 import javax.inject.Inject
 
 class LobbyLifecycleObserver @Inject constructor(
