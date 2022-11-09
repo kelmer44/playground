@@ -1,4 +1,4 @@
-package com.example.injectiontest.lobby
+package com.example.injectiontest.flow.lobby
 
 import androidx.lifecycle.ViewModel
 import com.example.injectiontest.hexCode

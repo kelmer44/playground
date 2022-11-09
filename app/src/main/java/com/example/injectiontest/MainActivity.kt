@@ -2,9 +2,11 @@ package com.example.injectiontest
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.injectiontest.arch.ArchFragment
+import com.example.injectiontest.archselector.ArchSelectorFragment
+import com.example.injectiontest.archselector.arch.ArchFragment
+import com.example.injectiontest.archselector.archalt.ArchAltFragment
 import com.example.injectiontest.flow.FlowFragment
-import com.example.injectiontest.lobby.LobbyFragment
+import com.example.injectiontest.flow.lobby.LobbyFragment
 import com.example.injectiontest.model.ParamHolder
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -13,9 +15,23 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        archFragment()
+//        archSelectorFragment()
+//        archFragment()
+        archAltFragment()
 //        lobbyFragment()
 //        flowFragment()
+    }
+
+    private fun archSelectorFragment() {
+        supportFragmentManager.beginTransaction()
+            .add(R.id.content_fragment, ArchSelectorFragment.newInstance())
+            .commit()
+    }
+
+    private fun archAltFragment() {
+        supportFragmentManager.beginTransaction()
+            .add(R.id.content_fragment, ArchAltFragment.newInstance())
+            .commit()
     }
 
     private fun archFragment() {

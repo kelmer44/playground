@@ -1,4 +1,4 @@
-package com.example.injectiontest.lobby
+package com.example.injectiontest.flow.lobby
 
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner

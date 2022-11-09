@@ -1,8 +1,9 @@
-package com.example.injectiontest.arch;
+package com.example.injectiontest.archselector.arch;
 
 
 import androidx.fragment.app.Fragment;
 
+import com.example.injectiontest.archselector.ArchRepository;
 import com.example.injectiontest.util.ViewModelUtils;
 
 import dagger.Module;
@@ -15,11 +16,12 @@ import dagger.hilt.android.components.FragmentComponent;
 abstract class Arch_FragmentModule {
 
     @Provides
-    static ArchViewModel providesViewModel(Fragment fragment) {
+    static ArchViewModel providesViewModel(Fragment fragment,
+                                           ArchRepository repository) {
         return ViewModelUtils.getViewModel(
                 fragment,
                 ArchViewModel.class,
-                () -> new ArchViewModel()
+                () -> new ArchViewModel(repository)
         );
     }
 }

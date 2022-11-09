@@ -2,7 +2,7 @@ package com.example.injectiontest.flow
 
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
-import com.example.injectiontest.lobby.LobbyViewModel
+import com.example.injectiontest.flow.lobby.LobbyViewModel
 import javax.inject.Inject
 
 class FlowLifecycleObserver @Inject constructor(

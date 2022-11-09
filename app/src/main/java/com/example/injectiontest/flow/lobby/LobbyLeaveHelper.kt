@@ -1,4 +1,4 @@
-package com.example.injectiontest.lobby
+package com.example.injectiontest.flow.lobby
 
 import com.example.injectiontest.hexCode
 import timber.log.Timber

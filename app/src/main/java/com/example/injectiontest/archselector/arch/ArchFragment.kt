@@ -1,4 +1,4 @@
-package com.example.injectiontest.archalt
+package com.example.injectiontest.archselector.arch
 
 import android.os.Bundle
 import android.view.View
@@ -10,14 +10,18 @@ import javax.inject.Inject
 import javax.inject.Provider
 
 @AndroidEntryPoint
-class ArchAltFragment : Fragment(R.layout.fragment_arch) {
+class ArchFragment : Fragment(R.layout.fragment_arch) {
 
     @Inject
-    lateinit var provider: Provider<ArchAltLifecycleObserver>
+    lateinit var provider: Provider<ArchLifecycleObserver>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Timber.i("ArchAltFragment OnViewCreated")
+        Timber.i("ArchFragment OnViewCreated")
         viewLifecycleOwner.lifecycle.addObserver(provider.get())
+    }
+
+    companion object {
+        fun newInstance() = ArchFragment()
     }
 }

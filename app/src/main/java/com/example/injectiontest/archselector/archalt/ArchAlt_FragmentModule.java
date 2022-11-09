@@ -1,9 +1,10 @@
-package com.example.injectiontest.archalt;
+package com.example.injectiontest.archselector.archalt;
 
 
 import androidx.fragment.app.Fragment;
 
-import com.example.injectiontest.arch.ArchViewModel;
+import com.example.injectiontest.archselector.ArchRepository;
+import com.example.injectiontest.archselector.arch.ArchViewModel;
 import com.example.injectiontest.util.ViewModelUtils;
 
 import dagger.Module;
@@ -16,11 +17,11 @@ import dagger.hilt.android.components.FragmentComponent;
 abstract class ArchAlt_FragmentModule {
 
     @Provides
-    static ArchAltViewModel providesViewModel(Fragment fragment) {
+    static ArchAltViewModel providesViewModel(Fragment fragment, ArchRepository archRepository) {
         return ViewModelUtils.getViewModel(
                 fragment,
                 ArchAltViewModel.class,
-                () -> new ArchAltViewModel()
+                () -> new ArchAltViewModel(archRepository)
         );
     }
 }
