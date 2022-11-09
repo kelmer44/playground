@@ -1,14 +1,8 @@
 package com.example.injectiontest.lobby;
 
-import static com.example.injectiontest.lobby.LobbyFragment.STRING_PARAM_KEY;
-
 import androidx.fragment.app.Fragment;
 
-import com.example.app_annotations.FragmentArgument;
 import com.example.injectiontest.util.ViewModelUtils;
-
-
-import javax.inject.Named;
 
 import dagger.Lazy;
 import dagger.Module;
@@ -23,15 +17,11 @@ abstract class Lobby_FragmentModule {
     @Provides
     static LobbyViewModel provideLobbyViewModel(
             Fragment fragment,
-            Lazy<LobbyLeaveHelper> lobbyLeaveHelperProvider,
-            @Named(STRING_PARAM_KEY)
-            @FragmentArgument
-            String injectedParam
-
+            Lazy<LobbyLeaveHelper> lobbyLeaveHelperProvider
     ) {
         return ViewModelUtils.getViewModel(fragment,
                 LobbyViewModel.class,
-                () -> new LobbyViewModel(lobbyLeaveHelperProvider, injectedParam)
+                () -> new LobbyViewModel(lobbyLeaveHelperProvider)
         );
     }
 

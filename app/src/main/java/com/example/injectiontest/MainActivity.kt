@@ -2,6 +2,7 @@ package com.example.injectiontest
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.injectiontest.arch.ArchFragment
 import com.example.injectiontest.flow.FlowFragment
 import com.example.injectiontest.lobby.LobbyFragment
 import com.example.injectiontest.model.ParamHolder
@@ -12,8 +13,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        archFragment()
 //        lobbyFragment()
-        flowFragment()
+//        flowFragment()
+    }
+
+    private fun archFragment() {
+        supportFragmentManager.beginTransaction()
+            .add(R.id.content_fragment, ArchFragment.newInstance())
+            .commit()
     }
 
     private fun flowFragment() {

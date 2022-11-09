@@ -12,10 +12,7 @@ class TestApp : Application() {
     lateinit var chocho: Chocho
 
     override fun onCreate() {
-
         super.onCreate()
         Timber.plant(Timber.DebugTree())
-        Timber.w("CHOCHO IS $chocho")
-
     }
 }
