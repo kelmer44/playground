@@ -2,12 +2,14 @@ package com.example.injectiontest
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import com.example.injectiontest.archselector.ArchSelectorFragment
 import com.example.injectiontest.archselector.arch.ArchFragment
 import com.example.injectiontest.archselector.archalt.ArchAltFragment
 import com.example.injectiontest.flow.FlowFragment
 import com.example.injectiontest.flow.lobby.LobbyFragment
 import com.example.injectiontest.model.ParamHolder
+import com.example.injectiontest.savedstate.SavedStateFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -18,37 +20,38 @@ class MainActivity : AppCompatActivity() {
 //        archSelectorFragment()
 //        archFragment()
         archAltFragment()
+        savedStateFragment()
 //        lobbyFragment()
 //        flowFragment()
     }
 
-    private fun archSelectorFragment() {
+    fun transact(fragment: Fragment){
         supportFragmentManager.beginTransaction()
-            .add(R.id.content_fragment, ArchSelectorFragment.newInstance())
+            .add(R.id.content_fragment, fragment)
             .commit()
+    }
+
+    private fun savedStateFragment() {
+        transact(SavedStateFragment())
+    }
+
+    private fun archSelectorFragment() {
+        transact(ArchSelectorFragment.newInstance())
     }
 
     private fun archAltFragment() {
-        supportFragmentManager.beginTransaction()
-            .add(R.id.content_fragment, ArchAltFragment.newInstance())
-            .commit()
+        transact(ArchAltFragment.newInstance())
     }
 
     private fun archFragment() {
-        supportFragmentManager.beginTransaction()
-            .add(R.id.content_fragment, ArchFragment.newInstance())
-            .commit()
+        transact(ArchFragment.newInstance())
     }
 
     private fun flowFragment() {
-        supportFragmentManager.beginTransaction()
-            .add(R.id.content_fragment, FlowFragment.newInstance())
-            .commit()
+        transact(FlowFragment.newInstance())
     }
 
     private fun lobbyFragment() {
-        supportFragmentManager.beginTransaction()
-            .add(R.id.content_fragment, LobbyFragment.newInstance("This is my passed Argument", ParamHolder("This is my parcelable!")))
-            .commit()
+      transact(LobbyFragment.newInstance("This is my passed Argument", ParamHolder("This is my parcelable!")))
     }
 }
