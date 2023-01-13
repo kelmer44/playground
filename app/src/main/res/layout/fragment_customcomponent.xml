@@ -14,4 +14,12 @@
         android:textColor="@color/white"
         android:text="Hello World! Hilt Custom Component"
         />
+
+
+    <Button
+        android:id="@+id/print"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Print"
+        android:gravity="bottom" />
 </FrameLayout>
