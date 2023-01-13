@@ -6,29 +6,46 @@ import androidx.fragment.app.Fragment
 import com.example.injectiontest.archselector.ArchSelectorFragment
 import com.example.injectiontest.archselector.arch.ArchFragment
 import com.example.injectiontest.archselector.archalt.ArchAltFragment
+import com.example.injectiontest.component.CustomComponentFragment
 import com.example.injectiontest.flow.FlowFragment
 import com.example.injectiontest.flow.lobby.LobbyFragment
+import com.example.injectiontest.hiltviewmodel.HVMFragment
 import com.example.injectiontest.model.ParamHolder
 import com.example.injectiontest.savedstate.SavedStateFragment
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var viewModel: MainActivityViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 //        archSelectorFragment()
 //        archFragment()
-        archAltFragment()
-        savedStateFragment()
+//        archAltFragment()
+//        savedStateFragment()
+//        hiltFragment()
 //        lobbyFragment()
 //        flowFragment()
+        customComponent()
+    }
+
+    private fun hiltFragment() {
+        transact(HVMFragment())
     }
 
     fun transact(fragment: Fragment){
         supportFragmentManager.beginTransaction()
             .add(R.id.content_fragment, fragment)
             .commit()
+    }
+
+    private fun customComponent() {
+        transact(CustomComponentFragment.newInstance())
     }
 
     private fun savedStateFragment() {

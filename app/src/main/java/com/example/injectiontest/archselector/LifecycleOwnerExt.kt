@@ -9,8 +9,8 @@ import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 
 /**
-* Convenience method for observing a [Flowable] instance while the [LifecycleOwner] is at least started.
-*/
+ * Convenience method for observing a [Flowable] instance while the [LifecycleOwner] is at least started.
+ */
 inline fun <T : Any> LifecycleOwner.subscribeWhileStarted(flowable: Flowable<T>, crossinline onNext: (T) -> Unit) {
     lifecycle.addObserver(
         object : DefaultLifecycleObserver {

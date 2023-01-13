@@ -5,6 +5,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import com.example.injectiontest.R
 import com.example.injectiontest.databinding.FragmentArchBinding
+import com.example.injectiontest.util.viewScoped
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import javax.inject.Inject
