@@ -1,5 +1,6 @@
 package com.example.injectiontest.component.component
 
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelStoreOwner
 import com.example.injectiontest.component.annotation.PlayerViewComponent
@@ -16,6 +17,7 @@ class PlayerComponentHolderImpl @AssistedInject internal constructor(
     @Assisted viewModelStoreOwner: ViewModelStoreOwner,
     @Assisted lifecycleOwner: LifecycleOwner,
     @Assisted experience: PlaybackExperience,
+//    @Assisted activity: FragmentActivity
 ) : PlayerComponentHolder {
 
     private val retainedComponent = RetainedComponent.playerRetainedComponent(
@@ -28,6 +30,7 @@ class PlayerComponentHolderImpl @AssistedInject internal constructor(
         getRetainedEntryPoint<RetainedComponent.EntryPoint>().viewComponentBuilder
             .seedLifecycleOwner(lifecycleOwner)
             .seedViewModelStoreOwner(viewModelStoreOwner)
+//            .seedActivity(activity)
             .build()
 
     init {
@@ -61,6 +64,7 @@ class PlayerComponentHolderImpl @AssistedInject internal constructor(
             viewModelStoreOwner: ViewModelStoreOwner,
             lifecycleOwner: LifecycleOwner,
             playbackExperience: PlaybackExperience,
+//            activity: FragmentActivity
         ): PlayerComponentHolderImpl
     }
 }

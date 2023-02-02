@@ -8,6 +8,7 @@ import com.example.injectiontest.component.component.PlayerComponentHolder
 import javax.inject.Inject
 
 class PlaybackExperiencePresenter @Inject constructor(
+//    private var activity: FragmentActivity,
     private var playerComponentHolderFactory: PlayerComponentHolder.Factory
 ) : PlaybackExperienceView.Presenter {
     override lateinit var playerComponentHolder: PlayerComponentHolder
@@ -21,6 +22,7 @@ class PlaybackExperiencePresenter @Inject constructor(
             viewModelStoreOwner,
             lifecycleOwner,
             playbackExperience,
+//            activity
         )
     }
 }

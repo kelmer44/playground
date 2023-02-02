@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 //        hiltFragment()
 //        lobbyFragment()
 //        flowFragment()
-//        watcher.addReference(this)
+        watcher.addReference(this)
         if(supportFragmentManager.findFragmentByTag("MYTAG") == null) {
             Timber.w("Player Setup = Transacting!")
             customComponent()

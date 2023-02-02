@@ -19,6 +19,7 @@ interface PlayerComponentHolder {
             viewModelStoreOwner: ViewModelStoreOwner,
             lifecycleOwner: LifecycleOwner,
             playbackExperience: PlaybackExperience,
+//            activity: FragmentActivity
         ): PlayerComponentHolder
     }
 }

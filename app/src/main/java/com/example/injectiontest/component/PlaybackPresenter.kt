@@ -20,5 +20,9 @@ class PlaybackPresenter @Inject constructor(
             lifecycleOwner = fragment.viewLifecycleOwner,
             playbackExperience = PlaybackExperience.Kyber
         )
+
+        binding.collect.setOnClickListener {
+            System.gc()
+        }
     }
 }
