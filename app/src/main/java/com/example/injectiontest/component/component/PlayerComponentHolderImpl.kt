@@ -9,12 +9,13 @@ import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import dagger.hilt.EntryPoints
+import timber.log.Timber
 
 class PlayerComponentHolderImpl @AssistedInject internal constructor(
     builder: RetainedComponent.Builder,
     @Assisted viewModelStoreOwner: ViewModelStoreOwner,
     @Assisted lifecycleOwner: LifecycleOwner,
-    @Assisted experience: PlaybackExperience
+    @Assisted experience: PlaybackExperience,
 ) : PlayerComponentHolder {
 
     private val retainedComponent = RetainedComponent.playerRetainedComponent(
@@ -31,6 +32,7 @@ class PlayerComponentHolderImpl @AssistedInject internal constructor(
 
     init {
         registerFeatures(experience)
+        Timber.w("Player Setup --- retainedComponent is = $retainedComponent, viewComponent is = $viewComponent")
     }
 
     private fun registerFeatures(experience: PlaybackExperience) {
@@ -58,7 +60,7 @@ class PlayerComponentHolderImpl @AssistedInject internal constructor(
         override fun create(
             viewModelStoreOwner: ViewModelStoreOwner,
             lifecycleOwner: LifecycleOwner,
-            playbackExperience: PlaybackExperience
+            playbackExperience: PlaybackExperience,
         ): PlayerComponentHolderImpl
     }
 }
