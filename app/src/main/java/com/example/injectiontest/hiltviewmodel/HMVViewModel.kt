@@ -7,9 +7,9 @@ import javax.inject.Inject
 import javax.inject.Named
 
 @HiltViewModel
-class HMVViewModel @Inject constructor(@Named("bar") val bar: String) : ViewModel() {
+class HMVViewModel @Inject constructor(/*@Named("bar") val bar: String*/) : ViewModel() {
 
     fun hello() {
-        Timber.w("Bar is $bar")
+//        Timber.w("Bar is $bar")
     }
 }

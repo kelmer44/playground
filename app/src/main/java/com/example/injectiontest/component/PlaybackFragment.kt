@@ -10,24 +10,19 @@ import javax.inject.Inject
 import javax.inject.Provider
 
 @AndroidEntryPoint
-class CustomComponentFragment : Fragment(R.layout.fragment_customcomponent){
+class PlaybackFragment : Fragment(R.layout.fragment_playback){
 
     @Inject
-    internal lateinit var presenterProvider: Provider<CustomComponentPresenter>
+    internal lateinit var presenterProvider: Provider<PlaybackPresenter>
 
     private val presenter by viewScoped { presenterProvider.get() }
 
-    @Inject
-    lateinit var myCustomComponentHolderFactory: MyComponentHolder.Factory
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        myCustomComponentHolderFactory.create("Gabriel")
+        presenter
     }
 
     companion object {
-
-        fun newInstance() = CustomComponentFragment()
+        fun newInstance() = PlaybackFragment()
     }
 }

@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import com.example.injectiontest.archselector.ArchSelectorFragment
 import com.example.injectiontest.archselector.arch.ArchFragment
 import com.example.injectiontest.archselector.archalt.ArchAltFragment
-import com.example.injectiontest.component.CustomComponentFragment
+import com.example.injectiontest.component.PlaybackFragment
 import com.example.injectiontest.flow.FlowFragment
 import com.example.injectiontest.flow.lobby.LobbyFragment
 import com.example.injectiontest.hiltviewmodel.HVMFragment
@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun customComponent() {
-        transact(CustomComponentFragment.newInstance())
+        transact(PlaybackFragment.newInstance())
     }
 
     private fun savedStateFragment() {

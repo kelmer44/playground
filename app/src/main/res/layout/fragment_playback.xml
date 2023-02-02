@@ -4,10 +4,14 @@
     android:layout_width="match_parent"
     android:background="@color/black"
     android:layout_height="match_parent">
+    <com.example.injectiontest.component.view.PlaybackExperienceView
+        android:id="@+id/playback_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <!-- Content -->
     <TextView
-        android:id="@+id/basicCharactersText"
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
@@ -15,11 +19,4 @@
         android:text="Hello World! Hilt Custom Component"
         />
 
-
-    <Button
-        android:id="@+id/print"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Print"
-        android:gravity="bottom" />
 </FrameLayout>
