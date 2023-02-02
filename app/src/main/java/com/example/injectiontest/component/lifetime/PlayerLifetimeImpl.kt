@@ -13,7 +13,8 @@ import io.reactivex.functions.Action
 import io.reactivex.subjects.CompletableSubject
 import javax.inject.Inject
 
-@ActivityScoped
+//@ActivityScoped
+@PlayerRetainedScoped
 class PlayerLifetimeImpl @Inject constructor(
 ) : PlayerLifetime {
 

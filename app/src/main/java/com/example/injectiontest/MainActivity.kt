@@ -13,6 +13,7 @@ import com.example.injectiontest.hiltviewmodel.HVMFragment
 import com.example.injectiontest.model.ParamHolder
 import com.example.injectiontest.savedstate.SavedStateFragment
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -20,6 +21,9 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var viewModel: MainActivityViewModel
+
+    @Inject
+    lateinit var watcher: MemoryWatcher
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,8 +35,16 @@ class MainActivity : AppCompatActivity() {
 //        hiltFragment()
 //        lobbyFragment()
 //        flowFragment()
-        customComponent()
+//        watcher.addReference(this)
+        if(supportFragmentManager.findFragmentByTag("MYTAG") == null) {
+            Timber.w("Player Setup = Transacting!")
+            customComponent()
+        }
+        else {
+            Timber.w("Player Setup = Skipping transaction!")
+        }
     }
+
 
     private fun hiltFragment() {
         transact(HVMFragment())
@@ -40,7 +52,7 @@ class MainActivity : AppCompatActivity() {
 
     fun transact(fragment: Fragment){
         supportFragmentManager.beginTransaction()
-            .add(R.id.content_fragment, fragment)
+            .replace(R.id.content_fragment, fragment, "MYTAG")
             .commit()
     }
 

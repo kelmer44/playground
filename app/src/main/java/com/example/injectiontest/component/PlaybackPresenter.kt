@@ -3,6 +3,7 @@ package com.example.injectiontest.component
 import androidx.fragment.app.Fragment
 import com.example.injectiontest.component.experience.PlaybackExperience
 import com.example.injectiontest.databinding.FragmentPlaybackBinding
+import timber.log.Timber
 import javax.inject.Inject
 
 class PlaybackPresenter @Inject constructor(
@@ -13,6 +14,7 @@ class PlaybackPresenter @Inject constructor(
     private val playbackView = binding.playbackView
 
     init {
+        Timber.e("Player Setup = initializing PlaybackView")
         playbackView.setup(
             viewModelStoreOwner = fragment,
             lifecycleOwner = fragment.viewLifecycleOwner,

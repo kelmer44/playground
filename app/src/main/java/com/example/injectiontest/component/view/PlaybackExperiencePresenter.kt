@@ -1,5 +1,6 @@
 package com.example.injectiontest.component.view
 
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelStoreOwner
 import com.example.injectiontest.component.experience.PlaybackExperience
@@ -19,7 +20,7 @@ class PlaybackExperiencePresenter @Inject constructor(
         playerComponentHolder = playerComponentHolderFactory.create(
             viewModelStoreOwner,
             lifecycleOwner,
-            playbackExperience
+            playbackExperience,
         )
     }
 }

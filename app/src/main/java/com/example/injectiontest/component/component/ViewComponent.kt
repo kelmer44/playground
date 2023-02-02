@@ -1,5 +1,7 @@
 package com.example.injectiontest.component.component
 
+import android.os.Build
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelStoreOwner
 import com.example.injectiontest.component.annotation.PlayerManaged
@@ -18,6 +20,7 @@ internal object ViewComponent {
     internal interface Builder {
         fun seedViewModelStoreOwner(@BindsInstance @PlayerManaged owner: ViewModelStoreOwner) : Builder
         fun seedLifecycleOwner(@BindsInstance @PlayerManaged owner: LifecycleOwner) : Builder
+//        fun seedActivity(@BindsInstance activity: FragmentActivity) : Builder
         fun build() : PlayerViewComponent
     }
 

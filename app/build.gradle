@@ -64,6 +64,9 @@ dependencies {
     implementation "com.uber.autodispose:autodispose-ktx:1.0.0"
     implementation "com.uber.autodispose:autodispose-lifecycle-ktx:1.0.0"
 
+    // debugImplementation because LeakCanary should only run in debug builds.
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.10'
+
     implementation project(":app-annotations")
     kapt project(":app-processor")
 

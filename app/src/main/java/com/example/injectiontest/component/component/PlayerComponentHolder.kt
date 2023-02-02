@@ -1,5 +1,6 @@
 package com.example.injectiontest.component.component
 
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelStoreOwner
 import com.example.injectiontest.component.experience.PlaybackExperience
