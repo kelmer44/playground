@@ -10,6 +10,7 @@ import com.example.injectiontest.component.PlaybackFragment
 import com.example.injectiontest.flow.FlowFragment
 import com.example.injectiontest.flow.lobby.LobbyFragment
 import com.example.injectiontest.hiltviewmodel.HVMFragment
+import com.example.injectiontest.keystore.KeystoreFragment
 import com.example.injectiontest.model.ParamHolder
 import com.example.injectiontest.savedstate.SavedStateFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,13 +39,17 @@ class MainActivity : AppCompatActivity() {
         watcher.addReference(this)
         if(supportFragmentManager.findFragmentByTag("MYTAG") == null) {
             Timber.w("Player Setup = Transacting!")
-            customComponent()
+//            customComponent()
+            keystoreFragment()
         }
         else {
             Timber.w("Player Setup = Skipping transaction!")
         }
     }
 
+    private fun keystoreFragment() {
+        transact(KeystoreFragment.newInstance())
+    }
 
     private fun hiltFragment() {
         transact(HVMFragment())
