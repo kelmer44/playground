@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/download_singleton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Download with Singleton IL" />
+
+    <Button
+        android:id="@+id/download_injected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Download with Injected IL" />
+
+    <Button
+        android:id="@+id/clear_cache"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Clear disk cache" />
+
+
+    <Button
+        android:id="@+id/clear_singleton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Clear singleton cache" />
+
+</LinearLayout>
