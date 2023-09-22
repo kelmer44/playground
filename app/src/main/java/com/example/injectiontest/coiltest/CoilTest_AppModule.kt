@@ -54,14 +54,13 @@ interface CoilTest_AppModule {
                                     .build()
                             )
                             return@Interceptor proceed.newBuilder()
-                                .header("cache-control", "public, max-age=10, immutable")
+                                .header("cache-control", "public, max-age=5, immutable")
                                 .build()
                         }
                     )
                         .build()
                 )
                 .logger(DebugLogger())
-                .respectCacheHeaders(false)
                 .crossfade(true)
                 .diskCache(diskCache)
 

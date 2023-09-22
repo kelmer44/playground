@@ -3,6 +3,7 @@ package com.example.injectiontest
 import android.app.Application
 import coil.ImageLoader
 import coil.ImageLoaderFactory
+import coil.disk.DiskCache
 import coil.request.CachePolicy
 import coil.util.DebugLogger
 import dagger.hilt.android.HiltAndroidApp
@@ -16,7 +17,7 @@ class TestApp : Application(), ImageLoaderFactory {
     lateinit var chocho: Chocho
 
     @Inject
-    lateinit var imageLoader: ImageLoader
+    lateinit var diskCache: DiskCache
 
     override fun onCreate() {
         super.onCreate()
@@ -24,10 +25,12 @@ class TestApp : Application(), ImageLoaderFactory {
     }
 
     override fun newImageLoader(): ImageLoader {
-        return imageLoader.newBuilder()
+        return ImageLoader.Builder(this)
             .logger(DebugLogger())
             .memoryCache(null)
             .memoryCachePolicy(CachePolicy.DISABLED)
+//            .networkCachePolicy(CachePolicy.DISABLED)
+            .diskCache(diskCache)
             .diskCachePolicy(CachePolicy.ENABLED)
             .build()
     }

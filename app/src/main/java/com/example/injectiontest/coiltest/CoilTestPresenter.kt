@@ -25,7 +25,7 @@ class CoilTestPresenter @Inject constructor(
 ) {
     private val binding = FragmentCoilBinding.bind(fragment.requireView())
 
-    private val url = "https://fastly.picsum.photos/id/652/536/354.jpg?hmac=zWDXs5Y94rKgs39sJnp6k2PJZLCmeeUEXW3V9O1yvZQ"
+    private val url = "https://estatico.aventuraycia.com/imagenes/caja-the-secret-of-monkey-island-thumb200.jpg"
     init {
         Timber.d("Singleton Loader: ${fragment.requireContext().imageLoader} Injected loader: $imageLoader")
 
